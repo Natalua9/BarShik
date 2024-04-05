@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width: 80%;
+}
+/* шапка */
+header{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: baseline;
+    background: linear-gradient(rgb(0, 0, 0), #0DB295);
+}
+.naw-header{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-around;
+}
+.naw-header h1{
+   color: aliceblue;
+    
+}
+.naw-header a{
+    color: aliceblue;
+     text-decoration: none;
+ }
+.naw-menu{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+/* каталог */
+.catalog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 800px;
+    justify-content: center;
+
+}
+.category{
+    display: flex;
+    text-align: center;
+    width: 50%;
+    justify-content: space-evenly;
+}
+.button-category{
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+.button-category:hover{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    background-color:  #0DB295;
+}
+.logo{
+    position: relative;
+}
+.tovar img{
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+}
+.drink{
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+}
+.bloc-drinks{
+    display: flex;
+    width: 100%;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+}
+.button-tovar{
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+.button-tovar:hover{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    background-color:  #0DB295;
+}
+.podrobnee{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5)
+
+}
+.podrobnee:hover{
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    background-color:  #0DB295;
+}
+
+/* часть с текстом */
+.description{
+    background-color: #dedede75;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+.img-description{
+    height: 100%;
+    /* width: 10%; */
+    opacity: 0.4;
+    filter: alpha(opacity = 40);
+}
+.text-discription{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-end;
+    align-items: flex-end;
+}
+
+/* footer */
+footer{
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    background: linear-gradient(rgb(0, 0, 0), #0DB295);
+}
+.connection{
+    color: aliceblue;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.images-connection{
+    display: flex;
+    align-items: center;
+}
+
+.icon-whatsapp{
+    width: 35px;
+    height: 35px;
+}
+.copirater{
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
