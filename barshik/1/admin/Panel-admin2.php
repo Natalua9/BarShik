@@ -1,12 +1,3 @@
-<?php
-include "../connect.php";
-
-$query = "SELECT * FROM `Product` ";
-$result = mysqli_query($con, $query);
-$result1 = mysqli_fetch_all($result);
-$category = "SELECT * FROM `Category` ";
-$categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +20,11 @@ $categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
             </form>
         </div>
         <div class = "cart_account">
-            <a href="Panel-admin2.php">Управление товарами</a>
-            <a href="Panel-admin3.php">Управление категориями напитков</a>
-            <a href="Panel-admin4.php">Управление заказами</a>
-            <a href="Panel-admin5.php">Статистика и отчеты</a>
-            <a href="../">Выйти</a>
+            <a href="Panel-admin2.html">Управление товарами</a>
+            <a href="Panel-admin3.html">Управление категориями напитков</a>
+            <a href="Panel-admin4.html">Управление заказами</a>
+            <a href="">Статистика и отчеты</a>
+            <a href="/">Выйти</a>
             
         </div>
     </nav>
@@ -42,7 +33,7 @@ $categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
         <div class="header-div2">
            
         </div>
-        <!-- <section class="sort_1">
+        <section class="sort_1">
             <div class="sort">
                 <ul class="list-group list-group-horizontal mt-5 mb-3">
                     <h4>Сортировка по дате публикации:</h4>
@@ -54,50 +45,52 @@ $categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
                     </li>
                 </ul>
             </div>
-        </section> -->
+        </section>
     </div>
-<div class="container">
     <div class="products">
         <table>
             <tr>
                 <th>Название</th>
                 <th>Категория</th>
                 <th>Цена</th>
-                <th>Описание</th>
                 <th>Миниатюра</th>
-                <th>Редактировать</th>
-                <th>Удалить</th>
-
             </tr>
-            <?php foreach ($result1 as $item):?>
             <tr>
-                <td><?=$item[1]?></td>
-                <td><?=$item[3]?></td>
-                <td><?=$item[4]?></td>
-                <td><?=$item[2]?></td>
-                <td><img src="../images/<?=$item[5]?>" alt="" class="img-product-admin"></td>
-                <td><button type="button" class="btn btn-outline-success">Редактировать</button></td>
-                <td><button type="button" class="btn btn-outline-danger">Удалить</button></td>
+                <th>Margaret Nguyen</th>
+                <td>427311</td>
+                <td>June 3, 2010</time></td>
+                <td>0.00</td>
+                <td><button><img src="/add_1237946.png" alt=""></button></td>
+                <td><button><img src="/shape_12205851.png" alt=""></button></td>
             </tr>
-            <?php endforeach;?>
+            <tr>
+                <th>Edvard Galinski</th>
+                <td>533175</td>
+                <td>January 13, 2011</time></td>
+                <td>37.00</td>
+                <td><button><img src="/add_1237946.png" alt=""></button></td>
+                <td><button><img src="/shape_12205851.png" alt=""></button></td>
+            </tr>
+            <tr>
+                <th>Hoshi Nakamura</th>
+                <td>601942</td>
+                <td>July 23, 2012</time></td>
+                <td>15.00</td>
+                <td><button><img src="/add_1237946.png" alt=""></button></td>
+                <td><button><img src="/shape_12205851.png" alt=""></button></td>
+            </tr>
         </table>
     </div>
-    <div>
-    <h2 class="edit-tovar">Добавление товара</h2>
-        <form action="newTovar_db.php" class="adding" method="POST" >
-           
+    <div class="adding">
+        
+        <form action="">
+            <p>Добавление товара</p>
             <input type="text" name="Name" id="" placeholder="Название">
-            <select name="Categ" id="category">     
-            <?php foreach ($categoryResult as $item) { ?>  
-                <option value='<?= $item[0] ?>'><?php echo $item[1]; ?></option>  
-            <?php } ?>  
-        </select> 
+            <input type="text" name="Cated" id="" placeholder="Категория">
             <input type="text" name="Price" id="" placeholder="Цена">
-            <input type="text" name="Descr" id="" placeholder="Описание">
             <input type="text" name="Image" id="" placeholder="Изображение">
-            <input type="submit" class="btn btn-success" value="Создать">
+            <input type="submit" value="">
         </form>
     </div>
-</div>
 </body>
 </html>

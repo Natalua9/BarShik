@@ -1,18 +1,33 @@
 <?php
 include "../connect.php";
-$name= isset($_POST['Name'])?$_POST['Name'] : false;
-$Discription= isset($_POST['Discription'])?$_POST['Discription'] : false;
-$Cetegor= isset($_POST['Categ'])?$_POST['Categ'] : false;
-$Price= isset($_POST['Price'])?$_POST['Price'] : false;
-$Image= isset($_POST['Image'])?$_POST['Image'] : false;
+$Name = isset($_POST['Name'])?$_POST['Name']:false;
+$Categ = isset($_POST['Categ'])?$_POST['Categ']:false;
+$Price = isset($_POST['Price'])?$_POST['Price']:false;
+$Descr = isset($_POST['Descr'])?$_POST['Descr']:false;
+$Image = isset($_POST['Image'])?$_POST['Image']:false;
+// $idP =  isset($_POST[''])?$_POST['Image']:false;
 
-$tovar=mysqli_query($con, "SELECT * FROM Product");
-$query_tovar = mysqli_fetch_all($tovar); 
-  // SQL запрос для добавления нового товара
-$queryNewTovar= mysqli_query($con, "INSERT INTO `Product`(`name_product`, `description`, `id_categories`, `price`, `image`) 
-VALUES ('$name','$Discription','$Cetegor','$Price','$Image')");
-$query = mysqli_query($con,"select * from category");
+function check_error($error) {
+    return "<script>
+    alert('$error'); 
+    location.href = 'Panel-admin2.php';
+    </script>";
+}
+if ($Name and $Categ and $Price and $Descr) {
+    $query = "INSERT INTO `Product` (`Name`, `Category_id`, `Description`, `Price`, `Image`) VALUES ('$Name', '$Categ', '$Descr', '$Price', '$Image')";
+    $result = mysqli_query($con, $query);
+    echo "<script>alert('Запись создана!');
+    location.href = 'newTovar.php';</script>";
 
-$query_category = mysqli_fetch_all($query);    
+} else {
+    echo check_error("Все поля должны быть заполненны!");
+}
+
+// удаление товара
+
+// if(empty()){
+// $queryDelete = ($con, "DELETE * FROM Product where `id_product` = $idP ");
+// }
+
 
 ?>
