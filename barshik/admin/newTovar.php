@@ -60,6 +60,7 @@ $categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
     <div class="products">
         <table>
             <tr>
+                <th>Id</th>
                 <th>Название</th>
                 <th>Категория</th>
                 <th>Цена</th>
@@ -69,17 +70,20 @@ $categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
                 <th>Удалить</th>
 
             </tr>
+            <form action="newTovar_db.php" method="post">
             <?php foreach ($result1 as $item):?>
             <tr>
-                <td><?=$item[1]?></td>
-                <td><?=$item[3]?></td>
-                <td><?=$item[4]?></td>
-                <td><?=$item[2]?></td>
+                <td > <input type="text" name="idP" value="<?=$item[0]?>"></td>
+                <td > <input type="text" name="Name" value="<?=$item[1]?>"></td>
+                <td > <input type="text" name="Categ" value="<?=$item[3]?>"></td>
+                <td > <input type="text" name="Price" value="<?=$item[4]?>"></td>
+                <td > <input type="text" name="Descr" value="<?=$item[2]?>"></td>
                 <td><img src="../images/<?=$item[5]?>" alt="" class="img-product-admin"></td>
-                <td><button type="button" class="btn btn-outline-success">Редактировать</button></td>
-                <td><button type="button" class="btn btn-outline-danger">Удалить</button></td>
+                <td><a href='newTovar_db.php?item=<?= $item[0] ?>'><button type="button" name="redact" class="btn btn-outline-success">Редактировать</button></a></td>
+                <td><a href = 'newTovar_db.php?item="  . $item[0] ."'><button type="button" name = "delete"class="btn btn-outline-danger">Удалить</button></a></td>
             </tr>
             <?php endforeach;?>
+            </form>
         </table>
     </div>
     <div>

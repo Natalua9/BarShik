@@ -45,12 +45,6 @@ nav li {
     width: 142px;
 }
 
-/* nav li:hover{
-    transform: scale(1.1);
-    background-color: #f9f9f9;
-    border-radius: 4px;
-} */
-
 nav a {
     text-decoration: none;
     color: rgb(255, 255, 255);
@@ -115,9 +109,9 @@ nav{
     padding: 10px;
 }
 .main_text{
-   display:flex;
-   justify-content: center;
-   color: black;
+    display:flex;
+    justify-content: center;
+    color: black;
 }
 .cards{
     display: flex;
@@ -131,8 +125,8 @@ footer{
     background: linear-gradient(#0DB295, rgb(0, 0, 0));
 }
 .products{
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .adding{
     margin-top: 30px;
@@ -191,6 +185,6 @@ tr:nth-child(even) {
 .container{
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    /* height: 80vh; */
     justify-content: center;
 }

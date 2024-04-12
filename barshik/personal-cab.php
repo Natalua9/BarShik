@@ -1,7 +1,20 @@
-<?php
-    include"header.php";
+<?php 
+session_start();
+include "header.php"; 
+require "connect.php"; 
 
+if(isset($_SESSION['user_id'])) {
+    $user = $_SESSION['user_id'];
+    
+    $queryUser = mysqli_query($con, "SELECT * FROM Users WHERE id_user = $user"); 
+    $queryUserInfo = mysqli_fetch_all($queryUser); }
+// } else {
+//     // Если нет активной сессии, перенаправляем пользователя на страницу авторизации
+//     header("Location: auto.php");
+//     exit;
+// }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,19 +34,22 @@
                 <div>
                 <img src="images\free-icon-boy-4537069.png" class="img-user" alt="">
                 </div>
-                <form action="" method="post" class="form-user-info">
+                <form action="personal-cab_db.php" method="post" class="form-user-info">
                     <div>
+                    <?php foreach ($queryUserInfo as $item):?>
+                        <h1>Привет, <?=$item[4]?> </h1> 
                     <label for="">Имя</label>
-                    <input type="text" placeholder="имя">
+                    <input type="text" name="name" placeholder="имя" value="<?=$item[4]?>">
                     </div>
                     <div>
                     <label for="">Почта</label>
-                    <input type="text" placeholder="email">
+                    <input type="text" name="email" placeholder="email" value="<?=$item[1]?>">
                     </div>
-                    <p>Бонусы:0<value[]></p>
+                    <input required type ="text"  name=" bonys" value="<?=$item[3]?>"></p>
                     <button name="edit" class="edit">Изменить </button>
+                    <?endforeach;  
+                     ?>
                 </form>
-                
                 </div>
                 <div class="history-zacaz">
                     <div class="order-history">
@@ -120,6 +136,7 @@
 </footer>
 </body>
 </html>
+
 
 <!-- модальное окно для отзыва -->
 
