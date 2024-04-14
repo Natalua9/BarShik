@@ -58,7 +58,7 @@
                                         <li>Вода</li>
                                         <li>Вода</li>
                                         </ol>
-                                     </td>
+                                    </td>
                                     <td>150 р </td>
                                     <td>Доставлен</td>
                                     <td><a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
@@ -71,7 +71,7 @@
                                         <li>Вода</li>
                                         <li>Милкшейк</li>
                                         </ol>
-                                     </td>
+                                    </td>
                                     <td>275 р </td>
                                     <td>В пути</td>
                                     <td></td>
@@ -85,7 +85,7 @@
                                         <li>Вода</li>
                                         <li>Вода</li>
                                         </ol>
-                                     </td>
+                                    </td>
                                     <td>175 р</td>
                                     <td>Доставлен</td>
                                     <td><a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
@@ -104,7 +104,7 @@
             <div class="connect">
             <p>Связь с нами</p> 
             <div class="images-connection">
-                <img src="images/free-icon-odnoklassniki-2504930.png" alt=""class="icon-whatsapp">
+                <img src="images\logorutub.png" alt=""class="icon-whatsapp">
                 <img src="images\icons8-vk-com-48.png" alt="" srcset="">
                 <img src="images\iconfinder-social-media-applications-23whatsapp-4102606_113811.png" class="icon-whatsapp">
             </div>

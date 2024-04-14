@@ -47,16 +47,17 @@ $result1 = mysqli_fetch_all($result);
         <div class="products">
             <table>
                 <tr>
-                    <th>Id</th>
+                    <!-- <th>Id</th> -->
                     <th>Название</th>
                     <th>Товары с категорией</th>
                     <th>Редактировать</th>
                     <th>Удалить</th>
                 </tr>
-
+                <form action="cat_update.php" method="post">
                 <?php foreach ($result1 as $item): ?>
+                    <td><input name="id" type="hidden" value="<?=$item[0]?>"></td>
                     <tr>
-                        <td><input value="<?=$item[0]?>"></td>
+                        <!-- <td><input value="<?=$item[0]?>"></td> -->
                         <td><input value="<?=$item[1]?>"> </td>
                         <td>
                             <?php
@@ -68,8 +69,9 @@ $result1 = mysqli_fetch_all($result);
                             }
                             ?>
                         </td>
-                        <td><a href='categoryTovar_db.php?id=<?=$item[0]?>'><button type="button" name="exit" class="btn btn-outline-success">Редактировать</button></a></td>
-                        <td><a href='categoryTovar_db.php?id=<?=$item[0]?>'><button type="button" class="btn btn-outline-danger">Удалить</button></a></td>
+                        <td><input type="submit" value="Редактировать"></td>
+                        </form>
+                        <td><a href='cat_delete .php?item=<?= $item[0]?>'>Удалить</a></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

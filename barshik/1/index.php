@@ -125,7 +125,7 @@
             <div class="connect">
             <p>Связь с нами</p> 
             <div class="images-connection">
-                <img src="images/free-icon-odnoklassniki-2504930.png" alt=""class="icon-whatsapp">
+                <img src="images\logorutub.png" alt=""class="icon-rutube">
                 <img src="images\icons8-vk-com-48.png" alt="" srcset="">
                 <img src="images\iconfinder-social-media-applications-23whatsapp-4102606_113811.png" class="icon-whatsapp">
             </div>
