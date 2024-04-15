@@ -32,7 +32,7 @@ $categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
         <div class = "cart_account">
             <a href="Panel-admin2.php">Управление товарами</a>
             <a href="Panel-admin3.php">Управление категориями напитков</a>
-            <a href="Panel-admin4.php">Управление заказами</a>
+            <a href="orderManagement.php">Управление заказами</a>
             <a href="Panel-admin5.php">Статистика и отчеты</a>
             <a href="../">Выйти</a>
             
@@ -75,7 +75,17 @@ $categoryResult =mysqli_fetch_all(mysqli_query($con, $category));
                 <input type="hidden" name="Idp" value="<?=$item[0]?>">
             <tr>
                 <td > <input type="text" name="Name" value="<?=$item[1]?>"></td>
-                <td > <input type="text" name="Categ" value="<?=$item[3]?>"></td>
+                <!-- Выпадающий список для категории --> 
+                <td>
+                            <select name="Categ">
+                                <?php foreach ($categoryResult as $categoryItem): ?>
+                                    <option value="<?=$categoryItem[0]?>" <?= $categoryItem[0] == $item[3] ? 'selected' : '' ?>>
+                                        <?=$categoryItem[1]?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                <!-- <td > <input type="text" name="Categ" value="<?=$item[3]?>"></td> -->
                 <td > <input type="text" name="Price" value="<?=$item[4]?>"></td>
                 <td > <input type="text" name="Descr" value="<?=$item[2]?>"></td>
                 <td><img src="../images/<?=$item[5]?>" alt="" class="img-product-admin"></td>

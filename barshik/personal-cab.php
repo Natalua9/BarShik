@@ -1,13 +1,13 @@
 <?php 
-session_start();
-include "header.php"; 
-require "connect.php"; 
 
-if(isset($_SESSION['user_id'])) {
-    $user = $_SESSION['user_id'];
-    
-    $queryUser = mysqli_query($con, "SELECT * FROM Users WHERE id_user = $user"); 
-    $queryUserInfo = mysqli_fetch_all($queryUser); }
+include "header.php"; 
+include "connect.php"; 
+// После успешной аутентификации пользователя
+$id = $_COOKIE['User_id'];
+$queryUserInfo = mysqli_fetch_all(mysqli_query($con,"SELECT * from `Users` where User_id = $id"));
+$userInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Users` where User_id = $id" ));
+$orderInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Orders` where User_id = $id" ));
+
 // } else {
 //     // Если нет активной сессии, перенаправляем пользователя на страницу авторизации
 //     header("Location: auto.php");
@@ -37,18 +37,20 @@ if(isset($_SESSION['user_id'])) {
                 <form action="personal-cab_db.php" method="post" class="form-user-info">
                     <div>
                     <?php foreach ($queryUserInfo as $item):?>
-                        <h1>Привет, <?=$item[4]?> </h1> 
+                        <h1>Привет, <?=$item[5]?> </h1> 
+                    <input type="hidden" name="id" placeholder="имя" value="<?=$item[0]?>">
+
                     <label for="">Имя</label>
-                    <input type="text" name="name" placeholder="имя" value="<?=$item[4]?>">
+                    <input type="text" name="name" placeholder="имя" value="<?=$item[5]?>">
                     </div>
                     <div>
                     <label for="">Почта</label>
                     <input type="text" name="email" placeholder="email" value="<?=$item[1]?>">
                     </div>
-                    <input required type ="text"  name=" bonys" value="<?=$item[3]?>"></p>
+                    <!-- <input required type ="text"  name=" bonys" value="<?=$item[3]?>"></p> -->
                     <button name="edit" class="edit">Изменить </button>
                     <?endforeach;  
-                     ?>
+                    ?>
                 </form>
                 </div>
                 <div class="history-zacaz">
@@ -65,48 +67,30 @@ if(isset($_SESSION['user_id'])) {
                                     <th>Отзыв</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <?php
+                                foreach($orderInfo as $value){
+                                $infoProduct=mysqli_fetch_all(mysqli_query($con,"SELECT * FROM Order_Product 
+                                INNER JOIN Orders ON Order_Product.Id_order = Orders.Id_order
+                                INNER JOIN Product ON Product.Id_product = Order_Product.Id_product 
+                                where Orders.Id_order =$value[0] and Orders.User_id = $id"));
+                                ?>
                                 <tr>
-                                    <td>Заказ #1</td>
-                                    <td>10.10.2021</td>
-                                    <td>
-                                        <ol>
-                                        <li>Вода</li>
-                                        <li>Вода</li>
-                                        </ol>
-                                     </td>
-                                    <td>150 р </td>
-                                    <td>Доставлен</td>
-                                    <td><a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Заказ #2</td>
-                                    <td>15.10.2021</td>
-                                    <td>
-                                        <ol>
-                                        <li>Вода</li>
-                                        <li>Милкшейк</li>
-                                        </ol>
-                                     </td>
-                                    <td>275 р </td>
-                                    <td>В пути</td>
-                                    <td></td>
+                                <td>№<?=$value[0]?></td>
+                                <td><?=$value[2]?></td>
+                            <td> <?php
+                                foreach($infoProduct as $product) {?>
+                            <p><?=$product[12]?><?=$product[3]?> шт</p>
+                                <?php } ?>
+                                </td>
+                                <td><?=$product[8]?> р</td>
+                                <td><?=$product[7]?></td>
+                                <td><a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
 
                                 </tr>
-                                <tr>
-                                    <td>Заказ #3</td>
-                                    <td>15.10.2021</td>
-                                    <td>
-                                        <ol>
-                                        <li>Вода</li>
-                                        <li>Вода</li>
-                                        </ol>
-                                     </td>
-                                    <td>175 р</td>
-                                    <td>Доставлен</td>
-                                    <td><a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
-
-                                </tr>
+                                <?php } ?>
+                               
+                            
+                                
                             </tbody>
                         </table>
                     </div>
