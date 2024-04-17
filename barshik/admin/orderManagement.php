@@ -59,9 +59,12 @@ INNER JOIN Product ON Product.Id_product = Order_Product.Id_product
         <td>
             <form action="updateOrderStatus.php" method="post">
                 <input type="hidden" name="orderId" value="1">
-                <label><input type="radio" name="newStatus" value="Готовим"> Готовим</label>
-                <label><input type="radio" name="newStatus" value="Доставка"> Доставка</label>
-                <label><input type="radio" name="newStatus" value="Выполнено"> Выполнено</label>
+                <label for="cars">Статус:</label>
+                <select id="cars" name="status" onchange="showSelectedCar()">
+                  <option value="Готовим">Готовим</option>
+                  <option value="Доставка">Доставка</option>
+                  <option value="Выполнено">Выполнено</option>
+                </select>
                 <button type="submit">Обновить статус</button>
             </form>
         </td>

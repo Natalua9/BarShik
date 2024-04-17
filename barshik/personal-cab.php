@@ -13,6 +13,17 @@ $orderInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Orders` where U
 //     header("Location: auto.php");
 //     exit;
 // }
+if (isset($_POST['review_submit'])) {
+    $orderId = $_POST['order_id'];
+    $reviewText = $_POST['review_text'];
+
+    // Вставляем отзыв в базу данных
+    $query = "UPDATE Orders SET comment = '$reviewText' WHERE Id_order = $orderId";
+    $result = mysqli_query($con, $query);
+
+    // После добавления отзыва обновляем $orderInfo
+    $orderInfo = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM Orders WHERE User_id = $id" ));
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +76,8 @@ $orderInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Orders` where U
                                     <th>Сумма</th>
                                     <th>Статус</th>
                                     <th>Отзыв</th>
+                                    <th>Оставить отзыв</th>
+
                                 </tr>
                             </thead>
                             <?php
@@ -79,18 +92,49 @@ $orderInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Orders` where U
                                 <td><?=$value[2]?></td>
                             <td> <?php
                                 foreach($infoProduct as $product) {?>
-                            <p><?=$product[12]?><?=$product[3]?> шт</p>
+                            <p><?=$product[13]?><?=$product[3]?> шт</p>
                                 <?php } ?>
                                 </td>
                                 <td><?=$product[8]?> р</td>
-                                <td><?=$product[7]?></td>
-                                <td><a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
+                                <td><?=$value[3]?></td>
+                                <td><?=$value[7]?></td>
+                                <td>
+                                <?php if ($value[3] == "готов"): ?> 
+                        <!-- Ведите отзыв -->
+                                <form method="post" action="">
+                                <a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
+                                <div class="modal fade" id="feedback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                    <input type="hidden" name="order_id" value="<?= $value[0] ?>">
+
+                                        <h5 class="modal-title" id="exampleModalLabel">Оставьте отзыв</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label" >Сообщение:</label>
+                                            <textarea class="form-control" id="message-text" name="review_text"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" name="review_submit">Оставить отзыв</button>
+                                            </div>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+                                <?php else: ?> 
+                                        Заказ не выполнен
+                                    <?php endif; ?>
+
 
                                 </tr>
                                 <?php } ?>
                                
-                            
-                                
+                    
                             </tbody>
                         </table>
                     </div>
@@ -123,8 +167,8 @@ $orderInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Orders` where U
 
 
 <!-- модальное окно для отзыва -->
-
-
+<!-- 
+<form action="comment_db.php" method="post">
 <div class="modal fade" id="feedback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -133,16 +177,16 @@ $orderInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Orders` where U
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
-        <form>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Сообщение:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="message-text" class="col-form-label" >Сообщение:</label>
+            <textarea class="form-control" id="message-text" name="comment"></textarea>
           </div>
-        </form>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Оставить отзыв</button>
+            </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Оставить отзыв</button>
-      </div>
+     
     </div>
   </div>
 </div>
+</form> -->
