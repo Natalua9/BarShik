@@ -11,8 +11,8 @@ $check_update = false;
 
 $query_update = " UPDATE `Category` SET ";
 
-if ($query_cat["Name_cat"] != $Name) {
-    $query_update .= " Name_cat = '$Name', ";
+if ($query_cat["Name"] != $Name) {
+    $query_update .= " Name = '$Name', ";
     $check_update = true;
 }
 if ($check_update) {

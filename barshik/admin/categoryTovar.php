@@ -31,11 +31,11 @@ $result1 = mysqli_fetch_all($result);
             </form>
         </div>
         <div class = "cart_account">
-            <a href="Panel-admin2.php">Управление товарами</a>
-            <a href="Panel-admin3.php">Управление категориями напитков</a>
-            <a href="Panel-admin4.php">Управление заказами</a>
+            <a href="newTovar.php">Управление товарами</a>                     
+            <a href="categoryTovar.php">Управление категориями напитков</a>
+            <a href="orderManagement.php">Управление заказами</a>
             <a href="Panel-admin5.php">Статистика и отчеты</a>
-            <a href="../">Выйти</a>
+            <a href="/logout.php">Выйти</a>
             
         </div>
     </nav>
@@ -54,23 +54,22 @@ $result1 = mysqli_fetch_all($result);
                     <th>Удалить</th>
                 </tr>
                 <form action="cat_update.php" method="post">
-                <?php foreach ($result1 as $item): ?>
-                    <td><input name="id" type="hidden" value="<?=$item[0]?>"></td>
-                    <tr>
-                        <!-- <td><input value="<?=$item[0]?>"></td> -->
-                        <td><input value="<?=$item[1]?>"> </td>
-                        <td>
-                            <?php
-                            $categoryTovar = "SELECT Product.* FROM Product INNER JOIN Category ON Category.Category_id = Product.Category_id WHERE Category.Category_id = $item[0]";
-                            $categoryResult = mysqli_fetch_all(mysqli_query($con, $categoryTovar));
+    <?php foreach ($result1 as $item):?>
+        <td><input name="id" type="hidden" value="<?=$item[0]?>"></td>
+        <tr>
+            <td><input name="Name" value="<?=$item[1]?>"></td>
+            <td>
+                <?php
+                $categoryTovar = "SELECT Product.* FROM Product INNER JOIN Category ON Category.Category_id = Product.Category_id WHERE Category.Category_id = $item[0]";
+                $categoryResult = mysqli_fetch_all(mysqli_query($con, $categoryTovar));
 
-                            foreach ($categoryResult as $product) {
-                                echo $product[0] . " - " . $product[1] . "<br>";
-                            }
-                            ?>
-                        </td>
-                        <td><input type="submit" value="Редактировать"></td>
-                        </form>
+                foreach ($categoryResult as $product) {
+                    echo $product[0]. " - ". $product[1]. "<br>";
+                }
+               ?>
+            </td>
+            <td><input type="submit" value="Редактировать"></td>
+</form>
                         <td><a href='cat_delete .php?item=<?= $item[0]?>'>Удалить</a></td>
                     </tr>
                 <?php endforeach; ?>

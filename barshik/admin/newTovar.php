@@ -55,11 +55,11 @@ $list_products = mysqli_fetch_all($query);
                 </form>
             </div>
             <div class="cart_account">
-                <a href="Panel-admin2.php">Управление товарами</a>
-                <a href="Panel-admin3.php">Управление категориями напитков</a>
+                <a href="newTovar.php">Управление товарами</a>
+                <a href="categoryTovar.php">Управление категориями напитков</a>
                 <a href="orderManagement.php">Управление заказами</a>
                 <a href="Panel-admin5.php">Статистика и отчеты</a>
-                <a href="../">Выйти</a>
+                <a href="/logout.php">Выйти</a>
             </div>
         </nav>
     </header>
@@ -138,7 +138,7 @@ $list_products = mysqli_fetch_all($query);
             <input type="text" name="Price" id="" placeholder="Цена">
             <input type="text" name="Descr" id="" placeholder="Описание">
             <input type="text" name="Image" id="" placeholder="Изображение">
-            <input type="submit" class="btn btn-success" value="Создать">
+            <button type="submit" class="btn btn-success" value="Создать">Создать</button>
         </form>
     </div>
 </div>

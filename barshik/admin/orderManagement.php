@@ -29,12 +29,11 @@ INNER JOIN Product ON Product.Id_product = Order_Product.Id_product
             </form>
         </div>
         <div class = "cart_account">
-            <a href="Panel-admin2.html">Управление товарами</a>
-            <a href="Panel-admin3.html">Управление категориями напитков</a>
-            <a href="Panel-admin4.html">Управление заказами</a>
-            <a href="">Статистика и отчеты</a>
-            <img src="images/2703085_bag_cart_ecommerce_shop_icon.png" height="30px" width="30px" alt="">
-            <img src="images/9104273_person_user_people_profile_account_icon.png"height="30px" width="30px" alt="">
+            <a href="newTovar.php">Управление товарами</a>
+            <a href="categoryTovar.php">Управление категориями напитков</a>
+            <a href="orderManagement.php">Управление заказами</a>
+            <a href="Panel-admin5.php">Статистика и отчеты</a>
+            <a href="/logout.php">Выйти</a>
             
         </div>
     </nav>
@@ -58,13 +57,15 @@ INNER JOIN Product ON Product.Id_product = Order_Product.Id_product
         <td>заказ:<?="$value[1]"?></td>  
         <td>
             <form action="updateOrderStatus.php" method="post">
-                <input type="hidden" name="orderId" value="1">
+            <input type="hidden" name="orderId" value="<?= $value[0] ?>">
+
                 <label for="cars">Статус:</label>
-                <select id="cars" name="status" onchange="showSelectedCar()">
-                  <option value="Готовим">Готовим</option>
-                  <option value="Доставка">Доставка</option>
-                  <option value="Выполнено">Выполнено</option>
-                </select>
+                <select id="cars" name="newStatus" onchange="showSelectedCar()">
+  <option value="Готовим" <?php if ($value[13] === "Готовим") echo "selected"; ?> name = "newStatus">Готовим</option>
+  <option value="Доставка" <?php if ($value[13] === "Доставка") echo "selected"; ?> name = "newStatus">Доставка</option>
+  <option value="Выполнено" <?php if ($value[13] === "Выполнено") echo "selected"; ?> name = "newStatus">Выполнено</option>
+</select>
+
                 <button type="submit">Обновить статус</button>
             </form>
         </td>
@@ -72,7 +73,9 @@ INNER JOIN Product ON Product.Id_product = Order_Product.Id_product
         <td><input type="text" value=<?="$value[14]"?>></td> 
         <td>  
         <a href=""   data-bs-toggle="modal" data-bs-target="#feedback" > <button class="view-details">Подробности</button>  </a>
-        <a href='deleteOrder.php?item=<?= $value[0]?>'><button class="delete-order">Удалить заказ</button>  </a>
+        <a href='deleteOrder.php?item=<?php echo htmlspecialchars($value[0]);?>&itenOr=<?php echo htmlspecialchars($value[2]);?>'>
+    <button class="delete-order">Удалить заказ</button>
+</a>
         </td>  
     </tr>
     <?php } ?>

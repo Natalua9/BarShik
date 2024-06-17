@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 include "connect.php";
 
 $email = htmlspecialchars(trim($_POST['email']),ENT_QUOTES); // Удаляет все лишнее и записываем значение в переменную //$login

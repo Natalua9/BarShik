@@ -1,24 +1,24 @@
 <?php 
-
+session_start();
+if(isset( $_SESSION["message"])){
+    $mes = $_SESSION["message"];
+    echo "<script>alert('$mes')</script>";
+    unset( $_SESSION["message"]);
+}
 include "header.php"; 
 include "connect.php"; 
 // После успешной аутентификации пользователя
-$id = $_COOKIE['User_id'];
+$id = $_SESSION['User_id'];
 $queryUserInfo = mysqli_fetch_all(mysqli_query($con,"SELECT * from `Users` where User_id = $id"));
 $userInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Users` where User_id = $id" ));
 $orderInfo = mysqli_fetch_all(mysqli_query($con ,"select * from `Orders` where User_id = $id" ));
 
-// } else {
-//     // Если нет активной сессии, перенаправляем пользователя на страницу авторизации
-//     header("Location: auto.php");
-//     exit;
-// }
 if (isset($_POST['review_submit'])) {
     $orderId = $_POST['order_id'];
     $reviewText = $_POST['review_text'];
 
     // Вставляем отзыв в базу данных
-    $query = "UPDATE Orders SET comment = '$reviewText' WHERE Id_order = $orderId";
+    $query = "UPDATE `Orders` SET `comment` = '$reviewText' WHERE `Id_order` = '$orderId'";
     $result = mysqli_query($con, $query);
 
     // После добавления отзыва обновляем $orderInfo
@@ -48,11 +48,12 @@ if (isset($_POST['review_submit'])) {
                 <form action="personal-cab_db.php" method="post" class="form-user-info">
                     <div>
                     <?php foreach ($queryUserInfo as $item):?>
-                        <h1>Привет, <?=$item[5]?> </h1> 
+                   
+                        <h1>Привет, <?=$item[1]?> </h1> 
                     <input type="hidden" name="id" placeholder="имя" value="<?=$item[0]?>">
 
-                    <label for="">Имя</label>
-                    <input type="text" name="name" placeholder="имя" value="<?=$item[5]?>">
+                    <!-- <label for="">Имя</label>
+                    <input type="text" name="name" placeholder="имя" value="<?=$item[2]?>"> -->
                     </div>
                     <div>
                     <label for="">Почта</label>
@@ -90,16 +91,20 @@ if (isset($_POST['review_submit'])) {
                                 <tr>
                                 <td>№<?=$value[0]?></td>
                                 <td><?=$value[2]?></td>
-                            <td> <?php
+                            <?php
                                 foreach($infoProduct as $product) {?>
-                            <p><?=$product[13]?><?=$product[3]?> шт</p>
+                            <!-- <p><?=$product[12]?><?=$product[3]?> шт</p> -->
+                        
+
                                 <?php } ?>
-                                </td>
+                                </td> 
+                                <!-- <?php var_dump($infoProduct) ?> -->
+                                <td><?=$product[13]?> </td>
                                 <td><?=$product[8]?> р</td>
                                 <td><?=$value[3]?></td>
                                 <td><?=$value[7]?></td>
                                 <td>
-                                <?php if ($value[3] == "готов"): ?> 
+                                <?php if ($value[3] == "Готов"): ?> 
                         <!-- Ведите отзыв -->
                                 <form method="post" action="">
                                 <a href=""   data-bs-toggle="modal" data-bs-target="#feedback" ><img src="images\writing.png" alt="" class="img-writing"></a></td>
@@ -129,12 +134,8 @@ if (isset($_POST['review_submit'])) {
                                 <?php else: ?> 
                                         Заказ не выполнен
                                     <?php endif; ?>
-
-
                                 </tr>
                                 <?php } ?>
-                               
-                    
                             </tbody>
                         </table>
                     </div>

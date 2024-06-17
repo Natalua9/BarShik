@@ -12,11 +12,9 @@ if ($Name and $Categ and $Price and $Descr) {
     $result = mysqli_query($con, $query);
     echo "<script>alert('Запись создана!');
     location.href = 'newTovar.php';</script>";
-}else {
-    echo check_error("Все поля должны быть заполненны!");
+}else{
+    echo "<script>alert('Все поля должны быть заполненны!');
+    location.href = 'newTovar.php';</script>";
 }
-
-
-
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "connect.php"; 
 
 $id=$_POST['id'];
@@ -11,7 +12,6 @@ $queryUserInfo= mysqli_fetch_all($queryUser);
 if(isset($_SESSION['user_id'])) { 
     session_start();
     $user = $_SESSION['user_id']; 
-
     $queryUser = mysqli_query($con, "SELECT * FROM Users WHERE id_user = $user");  
     $queryUserInfo = mysqli_fetch_all($queryUser);  
 }

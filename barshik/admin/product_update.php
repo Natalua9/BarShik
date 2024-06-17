@@ -9,7 +9,7 @@ include "../connect.php";
 
     $product = mysqli_fetch_assoc(mysqli_query($con, "SELECT * from  `Product` 
     INNER JOIN Category on Product.Category_id = Category.Category_id 
-     where `Id_product` = $id_item "));
+     where `Id_product` = '$id_item' "));
     $check_update = false;
     $query_update = " UPDATE `Product` SET ";
     if ($product["Name"] != $Name) {
@@ -32,7 +32,7 @@ include "../connect.php";
     }
       if ($check_update) {
         $query_update = substr($query_update, 0, -2);
-        $query_update .= " WHERE Id_product = $id_item";
+        $query_update .= " WHERE Id_product = '$id_item'";
         $result = mysqli_query($con, $query_update);
         if ($result) {
             echo "<script>alert('Данные изменены!'); location.href = 'newTovar.php';</script>";   
