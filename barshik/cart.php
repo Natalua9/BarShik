@@ -44,13 +44,13 @@ session_start();
                     <tr> 
                   
                         <td> 
-                            <p name="tovar"><?= $value["4"] ?></p> 
+                            <input name="tovar" value = "<?= $value["4"] ?>"> 
                         </td> 
                         <td> 
-                            <p name="prise"><?= $value["7"] ?></p> 
+                            <input name="prise" value =<?= $value["7"] ?> >
                         </td> 
                         <td> 
-                            <p name="count"><?= $quantity ?></p> 
+                            <input name="count" value = <?= $quantity ?>>
                         </td> 
                     </tr> 
                     <?php } ?> 
@@ -58,7 +58,7 @@ session_start();
                 <a href="delete_tovar_bascet.php?id_tovar <?=$value["3"]?>">Очистить корзину</a>
 
             </ul> 
-            <a href="add_order.php?id_order=<?=$value["3"]?>&id_ord_tov=<?=$value["3"]?> "><button type="submit">ОФОРМИТЬ ЗАКАЗ</button></a>
+            <button type="submit">ОФОРМИТЬ ЗАКАЗ</button>
             </form>
         </div> 
     </main> 

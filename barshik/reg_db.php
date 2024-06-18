@@ -23,4 +23,4 @@ if(!empty($user2)){//empty — Проверяет, пуста ли переме�
 }
 $insert = mysqli_query($con,"INSERT INTO `users` (  `email`,`password_hash`, `Bonus_points`, `role`)VALUES( '$email','$password', '1','user' )");
 // $_SESSION["user_id"] = mysqli_insert_id($con);
-header('Location: personal-cab.php');
+header('Location: auto.php');
